@@ -30,6 +30,9 @@ import {
 	getWordAdsSuccessForSite
 } from 'state/wordads/approve/selectors';
 import Notice from 'components/notice';
+import NoticeAction from 'components/notice/notice-action';
+import QuerySiteStickers from 'components/data/query-site-stickers';
+import { siteHasSticker, isRequestingSiteStickers } from 'state/sites/stickers/selectors';
 
 const AdsMain = React.createClass( {
 
@@ -88,12 +91,18 @@ const AdsMain = React.createClass( {
 
 	renderInstantActivationToggle: function( component ) {
 		return ( <div>
+			<QuerySiteStickers siteId={ this.props.site.ID } />
 			<Card className="rads__activate-wrapper">
 				<div className="rads__activate-header">
 					<h2 className="rads__activate-header-title">{ this.translate( 'WordAds Disabled' ) }</h2>
 					<div className="rads__activate-header-toggle">
 						<FormButton
-							disabled={ this.props.site.options.wordads || ( this.props.requestingWordAdsApproval && this.props.wordAdsError === null ) }
+							disabled={
+								this.props.site.options.wordads ||
+								( this.props.requestingWordAdsApproval && this.props.wordAdsError === null ) ||
+								this.props.isRequestingSiteStickers ||
+								this.props.isMatureSite
+							}
 							onClick={ this.props.requestWordAdsApproval }
 						>
 							{ this.translate( 'Join WordAds' ) }
@@ -103,6 +112,14 @@ const AdsMain = React.createClass( {
 				{ this.props.wordAdsError &&
 					<Notice status="is-error rads__activate-notice" onDismissClick={ this.dismissWordAdsError }>
 						{ this.props.wordAdsError }
+					</Notice>
+				}
+				{ this.props.isMatureSite &&
+					<Notice status="is-warning rads__activate-notice" showDismiss={ false }>
+						{ this.translate( 'Your site has been identified as serving mature content. Our advertisers would like to include only family-friendly sites in the programme.' ) }
+						<NoticeAction href="https://wordads.co/2012/09/06/wordads-is-for-family-safe-sites/" external={ true }>
+							{ this.translate( 'Learn more' ) }
+						</NoticeAction>
 					</Notice>
 				}
 				<p className="rads__activate-description">
@@ -168,6 +185,8 @@ export default connect(
 		requestingWordAdsApproval: isRequestingWordAdsApprovalForSite( state, ownProps.site ),
 		wordAdsError: getWordAdsErrorForSite( state, ownProps.site ),
 		wordAdsSuccess: getWordAdsSuccessForSite( state, ownProps.site ),
+		isMatureSite: siteHasSticker( state, ownProps.site.ID, 'mature' ),
+		isRequestingSiteStickers: isRequestingSiteStickers( state, ownProps.site.ID )
 	} ),
 	{ requestWordAdsApproval, dismissWordAdsError },
 	( stateProps, dispatchProps, parentProps ) => Object.assign(

@@ -1988,6 +1988,16 @@ Undocumented.prototype.getGuidedTransferStatus = function( siteId ) {
 	return this.wpcom.req.get( '/sites/' + siteId + '/transfer', {
 		apiNamespace: 'wpcom/v2'
 	} );
+
+/**
+ * Get stickers that site hase been marked with
+ *
+ * @param {int}       siteId            The site ID
+ * @returns {XMLHttpRequest}          The XHR instance
+ */
+Undocumented.prototype.getStickers = function( siteId, fn ) {
+	debug( '/sites/:site:/blog-stickers' );
+	return this.wpcom.req.get( '/sites/' + siteId + '/blog-stickers', fn );
 };
 
 /**

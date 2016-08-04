@@ -12,6 +12,7 @@ import { plans } from './plans/reducer';
 import domains from './domains/reducer';
 import guidedTransfer from './guided-transfer/reducer';
 import vouchers from './vouchers/reducer';
+import stickers from './stickers/reducer';
 
 import mediaStorage from './media-storage/reducer';
 import {
@@ -134,6 +135,7 @@ export default combineReducers( {
 	items,
 	mediaStorage,
 	plans,
+	stickers,
 	guidedTransfer,
 	vouchers,
 	requesting
