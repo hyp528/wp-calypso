@@ -6,7 +6,7 @@
     "eslines": "./index.js"
   },
   "scripts": {
-    "lint": "./node_modules/.bin/eslint *js lib/*js tests/test*js",
+    "lint": "./node_modules/.bin/eslint .",
     "test": "./node_modules/.bin/tape tests/test*js | ./node_modules/.bin/faucet",
     "test-cli": "./node_modules/.bin/tape tests/test-cli.js | ./node_modules/.bin/faucet",
     "test-eslines": "./node_modules/.bin/tape tests/test-eslines.js | ./node_modules/.bin/faucet",

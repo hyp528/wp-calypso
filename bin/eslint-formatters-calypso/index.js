@@ -1,20 +1,19 @@
 #!/usr/bin/env node
 
-const fs = require( 'fs' );
 const cli = require( './src/cli' );
-const optionator = require( 'optionator' )({
-	options: [{
+const optionator = require( 'optionator' )( {
+	options: [ {
 		option: 'processor',
 		alias: 'p',
-	        type: 'String',
-	        description: 'choose processor ("eslines" by default)'
-	},{
+		type: 'String',
+		description: 'choose processor ("eslines" by default)'
+	}, {
 		option: 'format',
 		alias: 'f',
-	        type: 'String',
-	        description: 'choose end ESLint format ("stylish" by default)'
-	    }]
-});
+		type: 'String',
+		description: 'choose end ESLint format ("stylish" by default)'
+	} ]
+} );
 
 /* eslint no-process-exit: "off" */
 

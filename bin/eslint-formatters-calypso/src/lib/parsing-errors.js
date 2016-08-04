@@ -5,7 +5,7 @@
 module.exports = function( report ) {
 	// deep clone the report, so we can create a new one
 	// to tweak and edit in place - as this function remains pure.
-	let newReport = [];
+	const newReport = [];
 
 	report.forEach( file => {
 		let areParsingErrors = false;

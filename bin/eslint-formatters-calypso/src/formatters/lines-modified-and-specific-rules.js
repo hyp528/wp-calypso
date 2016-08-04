@@ -2,7 +2,7 @@
 
 'use strict';
 
-var fs = require( 'fs' );
+const fs = require( 'fs' );
 const differ = require( '../lib/differ' );
 const eslines = require( '../lib/eslines' );
 const gitDiffBranchVSMaster = require( '../lib/git-diff' );

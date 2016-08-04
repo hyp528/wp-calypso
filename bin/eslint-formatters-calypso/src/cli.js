@@ -12,35 +12,33 @@ const path = require( 'path' );
 */
 
 module.exports = function( report, options ) {
-
 	const getFormatter = format => {
 		// See https://github.com/eslint/eslint/blob/master/lib/cli-engine.js#L477
 
 		let formatterPath;
 
 		// default is stylish
-		format = format || "stylish";
+		format = format || 'stylish';
 
 		// only strings are valid formatters
-		if (typeof format === "string") {
-
+		if ( typeof format === 'string' ) {
 			// replace \ with / for Windows compatibility
-			format = format.replace(/\\/g, "/");
+			format = format.replace( /\\/g, '/' );
 
 			// if there's a slash, then it's a file
-			if (format.indexOf("/") > -1) {
-				formatterPath = path.resolve(process.cwd(), format);
+			if ( format.indexOf( '/' ) > -1 ) {
+				formatterPath = path.resolve( process.cwd(), format );
 			} else {
-				formatterPath = 'eslint/lib/formatters/' + format ;
+				formatterPath = 'eslint/lib/formatters/' + format;
 			}
 
 			try {
-				return require(formatterPath);
-			} catch (ex) {
-				ex.message = "Problem loading formatter: " + formatterPath + "\nError: " + ex.message;
+				return require( formatterPath );
+			} catch ( ex ) {
+				const msg = 'Problem loading formatter: ' + formatterPath + '\nError: ';
+				ex.message = msg + ex.message;
 				throw ex;
 			}
-
 		} else {
 			return null;
 		}
@@ -48,7 +46,7 @@ module.exports = function( report, options ) {
 
 	const getProcessor = processor => {
 		processor = processor || 'eslines';
-		return require( './formatters/' +  processor);
+		return require( './formatters/' + processor );
 	};
 
 	const processor = getProcessor( options.processor );
