@@ -13,6 +13,7 @@ import isEqual from 'lodash/isEqual';
 import Card from 'components/card';
 import ThemeMoreButton from './more-button';
 import Gridicon from 'components/gridicon';
+import TrackClicks from 'components/track-clicks';
 
 /**
  * Component
@@ -146,11 +147,14 @@ const Theme = React.createClass( {
 						{ price && ! purchased &&
 							<span className="price">{ price }</span>
 						}
-						{ ! isEmpty( this.props.buttonContents ) ? <ThemeMoreButton
-							index={ this.props.index }
-							theme={ this.props.theme }
-							onClick={ this.props.onMoreButtonClick }
-							options={ this.props.buttonContents } /> : null }
+						{ ! isEmpty( this.props.buttonContents )
+							? <TrackClicks fields="theme.id" >
+								<ThemeMoreButton
+									index={ this.props.index }
+									theme={ this.props.theme }
+									onClick={ this.props.onMoreButtonClick }
+									options={ this.props.buttonContents } />
+							</TrackClicks> : null }
 					</div>
 				</div>
 			</Card>
