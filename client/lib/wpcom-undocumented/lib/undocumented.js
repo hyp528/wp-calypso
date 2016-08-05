@@ -1988,7 +1988,7 @@ Undocumented.prototype.getGuidedTransferStatus = function( siteId ) {
 	return this.wpcom.req.get( '/sites/' + siteId + '/transfer', {
 		apiNamespace: 'wpcom/v2'
 	} );
-
+};
 /**
  * Get stickers that site hase been marked with
  *
