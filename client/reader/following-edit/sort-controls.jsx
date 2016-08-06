@@ -2,7 +2,7 @@
  * External dependencies
  */
 import React from 'react';
-import debugModule from 'debug';
+//import debugModule from 'debug';
 import noop from 'lodash/noop';
 
 /**
