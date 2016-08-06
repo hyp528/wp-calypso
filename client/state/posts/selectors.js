@@ -27,7 +27,6 @@ import { DEFAULT_POST_QUERY, DEFAULT_NEW_POST_VALUES } from './constants';
 import firstPassCanonicalImage from 'lib/post-normalizer/rule-first-pass-canonical-image';
 import decodeEntities from 'lib/post-normalizer/rule-decode-entities';
 import stripHtml from 'lib/post-normalizer/rule-strip-html';
-import { getSite } from 'state/sites/selectors';
 import addQueryArgs from 'lib/route/add-query-args';
 
 /**
