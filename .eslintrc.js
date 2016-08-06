@@ -44,7 +44,7 @@ module.exports = {
 		'no-unreachable': 1,
 		// Allows Chai `expect` expressions
 		'no-unused-expressions': 0,
-		'no-unused-vars': 1,
+		'no-unused-vars': 2,
 		'no-var': 1,
 		'object-curly-spacing': [ 1, 'always' ],
 		'operator-linebreak': [ 1, 'after', { overrides: {
