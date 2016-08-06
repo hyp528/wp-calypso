@@ -19,7 +19,6 @@ import {
 	isSitePostsLastPageForQuery,
 	getSitePostsForQueryIgnoringPage,
 	isRequestingSitePostsForQueryIgnoringPage,
-	isRequestingSitePost,
 	getEditedPost,
 	getPostEdits,
 	getEditedPostValue,
