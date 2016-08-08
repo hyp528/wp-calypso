@@ -8,7 +8,7 @@ import { constant, isFunction, noop } from 'lodash';
 /**
  * Internal dependencies
  */
-import pick from 'lib/pick';
+import deepPick from 'lib/deep-pick';
 import { GUIDED_TOUR_TRACKED_CLICK } from 'state/action-types';
 
 const stringShape = PropTypes.oneOfType( [
@@ -48,7 +48,7 @@ export default class TrackClicks extends Component {
 	mapPropsToAction( props ) {
 		const { fields, mapPropsToAction } = this.props;
 		return fields
-			? pick( props, fields )
+			? deepPick( props, fields )
 			: mapPropsToAction( props );
 	}
 

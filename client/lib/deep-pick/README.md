@@ -1,6 +1,4 @@
-# lib/pick
-
-**FIXME**: should this be named `deep-pick`?
+# lib/deep-pick
 
 A more featureful alternative to lodash's `pick` supporting nested properties.
 

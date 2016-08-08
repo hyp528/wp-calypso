@@ -8,7 +8,7 @@ import { expect } from 'chai';
  */
 import pick from '..';
 
-describe( 'lib/pick', () => {
+describe( 'lib/deep-pick', () => {
 	const data = {
 		a: {
 			aa: 11,
