@@ -2,7 +2,6 @@
  * External dependencies
  */
 var React = require( 'react' ),
-	defer = require( 'lodash/defer' ),
 	titleCase = require( 'to-title-case' );
 
 /**
