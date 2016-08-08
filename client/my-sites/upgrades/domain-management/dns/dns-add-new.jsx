@@ -48,9 +48,11 @@ const DnsAddNew = React.createClass( {
 	],
 
 	getFieldsForType( type ) {
+		/* eslint-disable no-unused-vars, no-shadow */
 		const [ Component, _ ] = find( this.recordTypes, ( [ _, types ] ) => {
 			return includes( types, type );
 		} );
+		/* eslint-enable no-unused-vars, no-shadow */
 
 		return assign( {}, Component.initialFields, { type } );
 	},
