@@ -22,7 +22,6 @@ import { fetch as fetchSite } from 'lib/reader-site-store/actions';
 import { fetchPost } from 'lib/feed-post-store/actions';
 import ReaderFullPostHeader from './header';
 import AuthorCompactProfile from 'blocks/author-compact-profile';
-import StickyPanel from 'components/sticky-panel';
 
 export class FullPostView extends React.Component {
 	constructor( props ) {
@@ -35,7 +34,7 @@ export class FullPostView extends React.Component {
 	}
 
 	render() {
-		const { post, site, feed } = this.props;
+		const { post, site } = this.props;
 		/*eslint-disable react/no-danger*/
 		return (
 			<ReaderMain className="reader-full-post">
@@ -46,15 +45,13 @@ export class FullPostView extends React.Component {
 				</div>
 				<div className="reader-full-post__content">
 					<div className="reader-full-post__sidebar">
-						<StickyPanel>
-							<AuthorCompactProfile
-								author={ post.author }
-								siteName={ post.site_name }
-								siteUrl= { post.site_URL }
-								followCount={ site && site.subscribers_count }
-								feedId={ post.feed_ID }
-								siteId={ post.site_ID } />
-						</StickyPanel>
+						<AuthorCompactProfile
+							author={ post.author }
+							siteName={ post.site_name }
+							siteUrl= { post.site_URL }
+							followCount={ site && site.subscribers_count }
+							feedId={ post.feed_ID }
+							siteId={ post.site_ID } />
 					</div>
 					<div className="reader-full-post__story">
 						<ReaderFullPostHeader post={ post } />
