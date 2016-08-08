@@ -115,8 +115,11 @@ const AdsMain = React.createClass( {
 					</Notice>
 				}
 				{ this.props.isMatureSite &&
-					<Notice status="is-warning rads__activate-notice" showDismiss={ false }>
-						{ this.translate( 'Your site has been identified as serving mature content. Our advertisers would like to include only family-friendly sites in the programme.' ) }
+					<Notice
+						status="is-warning rads__activate-notice"
+						showDismiss={ false }
+						text={ this.translate( 'Your site has been identified as serving mature content. Our advertisers would like to include only family-friendly sites in the programme.' ) }
+					>
 						<NoticeAction href="https://wordads.co/2012/09/06/wordads-is-for-family-safe-sites/" external={ true }>
 							{ this.translate( 'Learn more' ) }
 						</NoticeAction>
