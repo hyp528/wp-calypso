@@ -3,7 +3,6 @@
  */
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-import defer from 'lodash/defer';
 import find from 'lodash/find';
 import page from 'page';
 import React from 'react';
@@ -13,12 +12,10 @@ import React from 'react';
  */
 import { activated } from 'state/themes/actions';
 import analytics from 'lib/analytics';
-import { abtest } from 'lib/abtest';
 import Card from 'components/card';
 import ChargebackDetails from './chargeback-details';
 import CheckoutThankYouFeaturesHeader from './features-header';
 import CheckoutThankYouHeader from './header';
-import config from 'config';
 import DomainMappingDetails from './domain-mapping-details';
 import DomainRegistrationDetails from './domain-registration-details';
 import { fetchReceipt } from 'state/receipts/actions';
