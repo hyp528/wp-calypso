@@ -19,7 +19,7 @@ export const items = createReducer( {}, {
 	} )
 } );
 
-export const fetchingItems = createReducer( [], {
+export const fetchingItems = createReducer( {}, {
 	[ SITE_STICKERS_REQUEST ]: ( state, action ) => Object.assign( {}, state, { [ action.siteId ]: true } ),
 	[ SITE_STICKERS_REQUEST_SUCCESS ]: ( state, action ) => Object.assign( {}, state, { [ action.siteId ]: false } ),
 	[ SITE_STICKERS_REQUEST_FAILURE ]: ( state, action ) => Object.assign( {}, state, { [ action.siteId ]: false } ),

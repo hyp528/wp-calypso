@@ -41,7 +41,8 @@ describe( 'reducer', () => {
 			'plans',
 			'guidedTransfer',
 			'vouchers',
-			'requesting'
+			'requesting',
+			'stickers'
 		] );
 	} );
 
