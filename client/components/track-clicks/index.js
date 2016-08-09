@@ -10,6 +10,8 @@ import { constant, isFunction, noop } from 'lodash';
  */
 import deepPick from 'lib/deep-pick';
 import { COMPONENT_INTERACTION_TRACKED } from 'state/action-types';
+// FIXME temporary for mobile testing
+import { successNotice } from 'state/notices/actions';
 
 const stringShape = PropTypes.oneOfType( [
 	PropTypes.string,
@@ -44,6 +46,9 @@ export default class TrackClicks extends Component {
 			component: child.type.name,
 			...action,
 		} );
+
+		this.dispatch( successNotice(
+				`Tracked click on ${ child.type.name }` ) );
 	}
 
 	mapPropsToAction( props ) {
