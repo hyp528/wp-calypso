@@ -107,11 +107,37 @@
 		.author-compact-profile__follow .follow-button {
 			position: fixed;
 			top: 15px;
-			right: 100px;
+			right: 180px;
 			z-index: z-index( '.masterbar', '.reader-profile' )
 		}
 
 		.author-compact-profile__follow-count {
+			display: none;
+		}
+	}
+}
+
+.reader-full-post__sidebar .like-button {
+	@include breakpoint( "<660px" ) {
+		position: fixed;
+			top: 9px;
+			right: 100px;
+		z-index: z-index( '.masterbar', '.reader-profile' );
+
+		.like-button__label-status {
+			display: none;
+		}
+	}
+}
+
+.reader-full-post__sidebar .comment-button {
+	@include breakpoint( "<660px" ) {
+		position: fixed;
+			top: 10px;
+			right: 20px;
+		z-index: z-index( '.masterbar', '.reader-profile' );
+
+		.comment-button__label-status {
 			display: none;
 		}
 	}
