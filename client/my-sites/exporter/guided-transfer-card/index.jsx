@@ -12,8 +12,10 @@ import page from 'page';
 import CompactCard from 'components/card/compact';
 import Gridicon from 'components/gridicon';
 import Button from 'components/forms/form-button';
+import { isEligibleForGuidedTransfer } from 'state/sites/guided-transfer/selectors';
 import { getSiteSlug } from 'state/sites/selectors';
 import { getSelectedSiteId } from 'state/ui/selectors';
+import TransferUnavailableCard from './transfer-unavailable-card';
 
 const Feature = ( { children } ) =>
 	<li className="guided-transfer-card__feature-list-item">
@@ -34,7 +36,20 @@ class GuidedTransferCard extends Component {
 	}
 
 	render() {
-		const { translate } = this.props;
+		const {
+			translate,
+			isEligible,
+		} = this.props;
+
+		let proceedButton = <Button
+			onClick={ this.purchaseGuidedTransfer }
+			isPrimary={ true }>
+			{ translate( 'Purchase a Guided Transfer' ) }
+		</Button>;
+
+		if ( ! isEligible ) {
+			proceedButton = <span>Fix the issues below to proceed</span>;
+		}
 
 		return <div>
 			<CompactCard>
@@ -48,15 +63,12 @@ class GuidedTransferCard extends Component {
 						</h2>
 					</div>
 					<div className="guided-transfer-card__options-header-button-container">
-						<Button
-							onClick={ this.purchaseGuidedTransfer }
-							isPrimary={ true }>
-							{ translate( 'Purchase a Guided Transfer' ) }
-						</Button>
+						{ proceedButton }
 					</div>
 				</div>
 			</CompactCard>
-			<CompactCard className="guided-transfer-card__details">
+			{ isEligible
+			? <CompactCard className="guided-transfer-card__details">
 				<div className="guided-transfer-card__details-container">
 					<div className="guided-transfer-card__details-text">
 						<h1 className="guided-transfer-card__details-title">
@@ -85,6 +97,7 @@ class GuidedTransferCard extends Component {
 					</ul>
 				</div>
 			</CompactCard>
+			: <TransferUnavailableCard /> }
 		</div>;
 	}
 }
@@ -92,6 +105,8 @@ class GuidedTransferCard extends Component {
 const mapStateToProps = state => ( {
 	siteId: getSelectedSiteId( state ),
 	siteSlug: getSiteSlug( state, getSelectedSiteId( state ) ),
+	//isEligible: isEligibleForGuidedTransfer( state, getSelectedSiteId( state ) ),
+	isEligible: false,
 } );
 
 export default connect( mapStateToProps )( localize( GuidedTransferCard ) );
