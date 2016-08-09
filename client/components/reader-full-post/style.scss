@@ -118,15 +118,15 @@
 }
 
 .reader-full-post__sidebar .like-button {
+	.like-button__label-status {
+		display: none;
+	}
+
 	@include breakpoint( "<660px" ) {
 		position: fixed;
 			top: 9px;
 			right: 100px;
 		z-index: z-index( '.masterbar', '.reader-profile' );
-
-		.like-button__label-status {
-			display: none;
-		}
 	}
 }
 
@@ -136,10 +136,9 @@
 			top: 10px;
 			right: 20px;
 		z-index: z-index( '.masterbar', '.reader-profile' );
-
-		.comment-button__label-status {
-			display: none;
-		}
+	}
+	.comment-button__label-status {
+		display: none;
 	}
 }
 
