@@ -75,9 +75,12 @@
 
 .reader-full-post__story {
 	max-width: 720px;
-	@media only screen and ( max-width: 1040px ) {
-		flex-grow: 1;
-		flex-shrink: 1;
+	font-size: 17px;
+	line-height: 28px;
+
+	@include breakpoint( "<480px" ) {
+		font-size: 15px;
+		line-height: 24px;
 	}
 }
 
@@ -94,6 +97,8 @@
 		}
 		.reader-author-link {
 			font-weight: 700;
+			display: inline;
+			margin: 0;
 		}
 		.author-compact-profile__site-link {
 			display: inline;
@@ -118,19 +123,24 @@
 	font-family: $serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	font-size: 20px;
+	font-size: 26px;
 	font-weight: 700;
-	line-height: 1.3;
+	line-height: 34px;
 	margin: 60px 0 8px;
 	max-width: 750px;
 
-	@include breakpoint( "<660px" ) {
-		margin-top: 8px;
+	@include breakpoint( ">960px" ) {
+		font-size: 36px;
+		line-height: 46px;
 	}
 
-	@include breakpoint( ">480px" ) {
-		font-size: 28px;
-		line-height: 1.4;
+	@include breakpoint( "480px-960px" ) {
+		font-size: 32px;
+		line-height: 40px;
+	}
+
+	@include breakpoint( "<660px" ) {
+		margin-top: 8px;
 	}
 
 	.reader-full-post__header-title-link,
