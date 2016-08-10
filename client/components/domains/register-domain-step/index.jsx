@@ -32,13 +32,11 @@ import analyticsMixin from 'lib/mixins/analytics';
 import { getCurrentUser } from 'state/current-user/selectors';
 import { abtest } from 'lib/abtest';
 import QueryDomainsSuggestions from 'components/data/query-domains-suggestions';
-import cartItems from 'lib/cart-values/cart-items';
 import {
 	getDomainsSuggestions,
 	getDomainsSuggestionsError
 } from 'state/domains/suggestions/selectors';
 import support from 'lib/url/support';
-import * as upgradesActions from '../../../lib/upgrades/actions/cart';
 
 const domains = wpcom.domains();
 
