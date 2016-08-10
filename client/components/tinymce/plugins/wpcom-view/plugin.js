@@ -13,7 +13,7 @@
 var tinymce = require( 'tinymce/tinymce' ),
 	debounce = require( 'lodash/debounce' ),
 	ReactDom = require( 'react-dom' ),
-	React = require( 'react'),
+	React = require( 'react' ),
 	i18n = require( 'i18n-calypso' );
 
 /**
@@ -95,7 +95,7 @@ function wpview( editor ) {
 					siteId: sites.getSelectedSite() ? sites.getSelectedSite().ID : null,
 					onResize: debounce( triggerNodeChanged, 500 )
 				} ),
-				$view.find( '.wpview-body' )[0]
+				$view.find( '.wpview-body' )[ 0 ]
 			);
 
 			$view.attr( 'data-wpview-rendered', '' );
@@ -134,7 +134,7 @@ function wpview( editor ) {
 		var location = before ? 'before' : 'after',
 			offset = before ? 0 : 1;
 		deselect();
-		editor.selection.setCursorLocation( editor.dom.select( '.wpview-selection-' + location, view )[0], offset );
+		editor.selection.setCursorLocation( editor.dom.select( '.wpview-selection-' + location, view )[ 0 ], offset );
 		editor.nodeChanged();
 	}
 
@@ -166,7 +166,7 @@ function wpview( editor ) {
 	function removeView( view ) {
 		editor.undoManager.transact( function() {
 			handleEnter( view );
-			ReactDom.unmountComponentAtNode( $( view ).find( '.wpview-body' )[0] );
+			ReactDom.unmountComponentAtNode( $( view ).find( '.wpview-body' )[ 0 ] );
 			editor.dom.remove( view );
 			editor.focus();
 		} );
@@ -195,7 +195,7 @@ function wpview( editor ) {
 				contenteditable: 'true'
 			}, getText( viewNode ) );
 
-			editor.dom.select( '.wpview-body', viewNode )[0].appendChild( clipboard );
+			editor.dom.select( '.wpview-body', viewNode )[ 0 ].appendChild( clipboard );
 
 			// Both of the following are necessary to prevent manipulating the selection/focus
 			dom.bind( clipboard, 'beforedeactivate focusin focusout', _stop );
@@ -221,7 +221,7 @@ function wpview( editor ) {
 			dom = editor.dom;
 
 		if ( selected ) {
-			clipboard = editor.dom.select( '.wpview-clipboard', selected )[0];
+			clipboard = editor.dom.select( '.wpview-clipboard', selected )[ 0 ];
 			dom.unbind( clipboard );
 			dom.remove( clipboard );
 
@@ -265,7 +265,7 @@ function wpview( editor ) {
 		if ( event.level.content ) {
 			event.level.content = resetViews( event.level.content );
 		}
-	});
+	} );
 
 	// When the editor's content changes, scan the new content for
 	// matching view patterns, and transform the matches into
@@ -321,13 +321,13 @@ function wpview( editor ) {
 				event.content = pastedStr;
 			}
 		}
-	});
+	} );
 
 	// When the editor's content has been updated and the DOM has been
 	// processed, render the views in the document.
 	editor.on( 'SetContent', function() {
 		renderViews();
-	});
+	} );
 
 	// Set the cursor before or after a view when clicking next to it.
 	editor.on( 'click', function( event ) {
@@ -371,9 +371,9 @@ function wpview( editor ) {
 
 					return false;
 				}
-			});
+			} );
 		}
-	});
+	} );
 
 	editor.on( 'init', function() {
 		var scrolled = false,
@@ -394,7 +394,7 @@ function wpview( editor ) {
 			if ( ! view.nextSibling || getView( view.nextSibling ) ) {
 				// If there are no additional nodes or the next node is a
 				// view, create a text node after the current view.
-				target = editor.getDoc().createTextNode('');
+				target = editor.getDoc().createTextNode( '' );
 				editor.dom.insertAfter( target, view );
 			} else {
 				// Otherwise, find the next text node.
@@ -405,11 +405,11 @@ function wpview( editor ) {
 			// Select the `target` text node.
 			selection.select( target );
 			selection.collapse( true );
-		});
+		} );
 
 		editor.dom.bind( editor.getDoc(), 'touchmove', function() {
 			scrolled = true;
-		});
+		} );
 
 		editor.on( 'mousedown mouseup click touchend', function( event ) {
 			var view = getView( event.target );
@@ -447,10 +447,10 @@ function wpview( editor ) {
 			} )
 			.observe( editor.getBody(), {
 				attributes: true,
-				attributeFilter: ['class']
+				attributeFilter: [ 'class' ]
 			} );
 		}
-	});
+	} );
 
 	editor.on( 'preinit show', function() {
 		views.emitters.forEach( function( emitter ) {
@@ -481,7 +481,7 @@ function wpview( editor ) {
 	editor.on( 'hide', function() {
 		deselect();
 		emptyViewNodes();
-	});
+	} );
 
 	editor.on( 'GetContent', function( event ) {
 		if ( event.format === 'raw' && event.content && ! event.selection ) {
@@ -656,7 +656,7 @@ function wpview( editor ) {
 					}
 				}
 				event.preventDefault();
-			} else if ( cursorBefore && ( key === VK.UP || key ===  VK.LEFT ) ) {
+			} else if ( cursorBefore && ( key === VK.UP || key === VK.LEFT ) ) {
 				if ( view.previousSibling ) {
 					if ( getView( view.previousSibling ) ) {
 						setViewCursor( key === VK.UP, view.previousSibling );
@@ -686,21 +686,21 @@ function wpview( editor ) {
 			} else if ( cursorAfter ) {
 				handleEnter( view );
 			} else if ( cursorBefore ) {
-				handleEnter( view , true, key );
+				handleEnter( view, true, key );
 			}
 
 			if ( key === VK.ENTER ) {
 				event.preventDefault();
 			}
 		}
-	});
+	} );
 
 	editor.on( 'keyup', function() {
 		if ( toRemove ) {
 			removeView( toRemove );
 			toRemove = false;
 		}
-	});
+	} );
 
 	editor.on( 'focus', function() {
 		var view;
@@ -734,16 +734,15 @@ function wpview( editor ) {
 		clearInterval( cursorInterval );
 
 		// This runs a lot and is faster than replacing each class separately
-		tinymce.each( views, function ( view ) {
+		tinymce.each( views, function( view ) {
 			if ( view.className ) {
 				view.className = view.className.replace( / ?\bwpview-(?:selection-before|selection-after|cursor-hide)\b/g, '' );
 			}
-		});
+		} );
 
 		if ( focus && view ) {
 			if ( ( className === 'wpview-selection-before' || className === 'wpview-selection-after' ) &&
 				editor.selection.isCollapsed() ) {
-
 				setViewCursorTries = 0;
 
 				deselect();
@@ -775,7 +774,7 @@ function wpview( editor ) {
 				setViewCursor( true, view );
 			}
 		}
-	});
+	} );
 
 	editor.on( 'BeforeExecCommand', function() {
 		var node = editor.selection.getNode(),
@@ -785,7 +784,7 @@ function wpview( editor ) {
 			handleEnter( view, execCommandBefore );
 			execCommandView = view;
 		}
-	});
+	} );
 
 	editor.on( 'ExecCommand', function() {
 		var toSelect, node;
@@ -806,7 +805,7 @@ function wpview( editor ) {
 
 			execCommandView = false;
 		}
-	});
+	} );
 
 	editor.on( 'ResolveName', function( event ) {
 		if ( editor.dom.hasClass( event.target, 'wpview-wrap' ) ) {
@@ -816,7 +815,7 @@ function wpview( editor ) {
 			event.preventDefault();
 			event.stopPropagation();
 		}
-	});
+	} );
 
 	editor.addButton( 'wp_view_edit', {
 		tooltip: i18n.translate( 'Edit', { context: 'verb' } ),
