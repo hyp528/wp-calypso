@@ -69,10 +69,10 @@ function buildQuerystringNoPrefix( group, name ) {
 // this helps avoid some nasty coupling, but it's not the cleanest code - sorry.
 var mostRecentUrlPath = null;
 
-window.addEventListener('popstate', function() {
+window.addEventListener( 'popstate', function() {
 	// throw away our URL value if the user used the back/forward buttons
 	mostRecentUrlPath = null;
-});
+} );
 
 var analytics = {
 
@@ -177,9 +177,9 @@ var analytics = {
 			retarget();
 		},
 
-		createRandomId:  function() {
+		createRandomId: function() {
 			var randomBytesLength = 9, // 9 * 4/3 = 12 - this is to avoid getting padding of a random byte string when it is base64 encoded
-					randomBytes = [];
+				randomBytes = [];
 
 			if ( window.crypto && window.crypto.getRandomValues ) {
 				randomBytes = new Uint8Array( randomBytesLength );
@@ -197,7 +197,7 @@ var analytics = {
 		recordTiming: function( pageUrl, eventType, duration, triggerName ) {
 			// ignore triggerName for now, it has no obvious place in statsd
 			if ( config( 'boom_analytics_enabled' ) ) {
-				var featureSlug = pageUrl === '/' ? 'homepage' : pageUrl.replace(/^\//, '').replace(/\.|\/|:/g, '_');
+				var featureSlug = pageUrl === '/' ? 'homepage' : pageUrl.replace( /^\//, '' ).replace( /\.|\/|:/g, '_' );
 				var matched;
 				// prevent explosion of read list metrics
 				// this is a hack - ultimately we want to report this URLs in a more generic way to
@@ -219,16 +219,16 @@ var analytics = {
 				} else if ( startsWith( featureSlug, 'read_post_id_' ) ) {
 					featureSlug = 'read_post_id__id';
 				} else if ( ( matched = featureSlug.match( /^start_(.*)_(..)$/ ) ) != null ) {
-					featureSlug = `start_${matched[1]}`;
+					featureSlug = `start_${matched[ 1 ]}`;
 				}
 
-				var json = JSON.stringify({
-					beacons:[
-						'calypso.' + config( 'boom_analytics_key' ) + '.' + featureSlug + '.' + eventType.replace('-', '_') + ':' + duration + '|ms'
+				var json = JSON.stringify( {
+					beacons: [
+						'calypso.' + config( 'boom_analytics_key' ) + '.' + featureSlug + '.' + eventType.replace( '-', '_' ) + ':' + duration + '|ms'
 					]
-				});
+				} );
 
-				new Image().src = 'https://pixel.wp.com/boom.gif?v=calypso&u=' + encodeURIComponent(pageUrl) + '&json=' + encodeURIComponent(json);
+				new Image().src = 'https://pixel.wp.com/boom.gif?v=calypso&u=' + encodeURIComponent( pageUrl ) + '&json=' + encodeURIComponent( json );
 			}
 		}
 	},
@@ -294,7 +294,7 @@ var analytics = {
 			debug( 'Recording Timing ~ [URL: ' + urlPath + '] [Duration: ' + duration + ']' );
 
 			if ( config( 'google_analytics_enabled' ) ) {
-				window.ga( 'send', 'timing', urlPath, eventType, duration, triggerName);
+				window.ga( 'send', 'timing', urlPath, eventType, duration, triggerName );
 			}
 		}
 	},
