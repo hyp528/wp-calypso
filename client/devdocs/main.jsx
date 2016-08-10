@@ -14,14 +14,14 @@ var DocService = require( './service' ),
 	SearchCard = require( 'components/search-card' );
 
 var DEFAULT_FILES = [
-		'docs/guide/index.md',
-		'README.md',
-		'.github/CONTRIBUTING.md',
-		'docs/coding-guidelines.md',
-		'docs/coding-guidelines/javascript.md',
-		'docs/coding-guidelines/css.md',
-		'docs/coding-guidelines/html.md'
-	];
+	'docs/guide/index.md',
+	'README.md',
+	'.github/CONTRIBUTING.md',
+	'docs/coding-guidelines.md',
+	'docs/coding-guidelines/javascript.md',
+	'docs/coding-guidelines/css.md',
+	'docs/coding-guidelines/html.md'
+];
 
 module.exports = React.createClass( {
 	displayName: 'Devdocs',
@@ -52,7 +52,7 @@ module.exports = React.createClass( {
 		}
 
 		DocService.list( DEFAULT_FILES, function( err, results ) {
-			if ( !err && this.isMounted() ) {
+			if ( ! err && this.isMounted() ) {
 				this.setState( {
 					defaultResults: results
 				} );
@@ -135,14 +135,14 @@ module.exports = React.createClass( {
 
 	snippet: function( result ) {
 		// split around <mark> tags to avoid setting unescaped inner HTML
-		var parts = result.snippet.split(/(<mark>.*?<\/mark>)/);
+		var parts = result.snippet.split( /(<mark>.*?<\/mark>)/ );
 
 		return (
 			<div className="devdocs__result-snippet" key={ 'snippet' + result.path }>
 				{ parts.map( function( part, i ) {
 					var markMatch = part.match( /<mark>(.*?)<\/mark>/ );
 					if ( markMatch ) {
-						return <mark key={ 'mark' + i }>{markMatch[1]}</mark>;
+						return <mark key={ 'mark' + i }>{ markMatch[ 1 ] }</mark>;
 					} else {
 						return part;
 					}
