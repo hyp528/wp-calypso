@@ -2,13 +2,10 @@
  * External dependencies
  */
 import debugFactory from 'debug';
-import i18n from 'i18n-calypso';
 
 /**
  * Internal dependencies
  */
-import { action as ActionTypes } from '../constants';
-import Dispatcher from 'dispatcher';
 import wp from 'lib/wp';
 
 const debug = debugFactory( 'calypso:upgrades:actions:purchases' ),
