@@ -631,7 +631,6 @@ StatsParser.prototype.statsTopPosts = function( payload ) {
 		response.data = payload.days[ startDate ].postviews.map( function( item ) {
 			var detailPage = '/stats/post/' + item.id + '/' + this.options.domain,
 				postDate,
-				children,
 				inPeriod = false;
 
 			if ( item.date ) {
@@ -641,17 +640,6 @@ StatsParser.prototype.statsTopPosts = function( payload ) {
 					( postDate.isBefore( periodRange.endOf ) || postDate.isSame( periodRange.endOf ) ) ) {
 					inPeriod = true;
 				}
-			}
-
-			if ( item.children ) {
-				children = item.children.map( function( child ) {
-					return {
-						label: child.title,
-						value: child.views,
-						link: child.link,
-						labelIcon: 'attachment'
-					};
-				} );
 			}
 
 			return {
