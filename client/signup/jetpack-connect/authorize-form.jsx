@@ -41,6 +41,7 @@ import Button from 'components/button';
 import { requestSites } from 'state/sites/actions';
 import { isRequestingSites } from 'state/sites/selectors';
 import MainWrapper from './main-wrapper';
+import { withoutHttp } from 'lib/url';
 
 /**
  * Constants
@@ -367,7 +368,7 @@ const LoggedInForm = React.createClass( {
 	getRedirectionTarget() {
 		const { queryObject } = this.props.jetpackConnectAuthorize;
 		const site = queryObject.site;
-		const siteSlug = site.replace( /^https?:\/\//, '' ).replace( /\//g, '::' );
+		const siteSlug = withoutHttp( site ).replace( /\//g, '::' );
 		return PLANS_PAGE + siteSlug;
 	},
 
