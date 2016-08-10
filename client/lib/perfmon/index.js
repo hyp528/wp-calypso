@@ -47,7 +47,7 @@ function observeDomChanges( MutationObserver ) {
 	} );
 
 	// this is fired for matching mutations (childList and class attr changes)
-	var observer = new MutationObserver( function( mutations, observer ) {
+	var observer = new MutationObserver( function( mutations, observer ) { // eslint-disable-line no-unused-vars
 		// record all the nodes that match our placeholder classes in the "activePlaceholders" array
 		mutations.forEach( recordPlaceholders );
 
@@ -55,7 +55,7 @@ function observeDomChanges( MutationObserver ) {
 		// check each node for:
 		// a. whether it's still in the DOM at all, and if so:
 		// b. whether it still has a placeholder class
-		var removed = remove( activePlaceholders, function( node ) {
+		remove( activePlaceholders, function( node ) {
 			return ! OBSERVE_ROOT.contains( node ) || ! isPlaceholder( node );
 		} );
 
