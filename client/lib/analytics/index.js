@@ -194,7 +194,7 @@ var analytics = {
 	},
 
 	statsd: {
-		recordTiming: function( pageUrl, eventType, duration, triggerName ) {
+		recordTiming: function( pageUrl, eventType, duration, triggerName ) { // eslint-disable-line no-unused-vars
 			// ignore triggerName for now, it has no obvious place in statsd
 			if ( config( 'boom_analytics_enabled' ) ) {
 				var featureSlug = pageUrl === '/' ? 'homepage' : pageUrl.replace( /^\//, '' ).replace( /\.|\/|:/g, '_' );
