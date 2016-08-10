@@ -11,7 +11,6 @@ var store = require( 'store' ),
  * Internal dependencies
  */
 var Dispatcher = require( 'dispatcher' ),
-	config = require( 'config' ),
 	steps = require( 'signup/config/steps' ),
 	emitter = require( 'lib/mixins/emitter' );
 
